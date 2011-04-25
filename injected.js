@@ -44,7 +44,7 @@ function _init() {
 function keyEvent(event) {
 	var s = settings;
 
-	if (linkHintsModeActivated || !event.ctrlKey)
+	if (linkHintsModeActivated || !event.altKey)
 		return;
 
 	switch (getKeyChar(event)) {
