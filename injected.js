@@ -44,25 +44,35 @@ function _init() {
 function keyEvent(event) {
 	var s = settings;
 
-	if (linkHintsModeActivated || !event.altKey)
+	if (linkHintsModeActivated || !(event.ctrlKey || event.altKey))
 		return;
 
 	switch (getKeyChar(event)) {
 		case s.hintToggle    :
-					HUD.show('Link hints mode');
-					activateLinkHintsMode(false, false);
+					if (event.altKey) {
+                      HUD.show('Link hints mode');
+                      activateLinkHintsMode(false, false);
+                    }
 				  	break;
-		case s.tabForward    :
-					safari.self.tab.dispatchMessage('changeTab', 0);
+		case 'k'   :
+					if (event.ctrlKey) { 
+                       window.scrollBy(0, -60); 
+                    }
 					break;
-		case s.tabBack       :
-					safari.self.tab.dispatchMessage('changeTab', 1);
+		case 'j'   :
+					if (event.ctrlKey) { 
+                      window.scrollBy(0, 60); 
+                    }
 					break;
-		case s.histForward   :
-					window.history.forward();	
+		case 'l'   :
+					if (event.altKey) {
+                      window.history.forward();	
+                    }
 					break;
-		case s.histBack      :
-					window.history.back();
+		case 'h'      :
+					if (event.altKey) {
+                      window.history.back();
+                    }
 					break;
 	}
 
